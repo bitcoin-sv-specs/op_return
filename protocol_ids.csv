@@ -6,4 +6,4 @@ Prefix,DisplayName,Authors,BitcoinAddress,SpecificationUrl,TxidRedirectUrl
 0x02446365,SatoshiDICE,Jon Bestman,1DiceuELb5GZktc3CMEv868DMtU3B5957x,https://satoshidice.com,
 0xac1eed88,Miner ID,Steve Shadders,,,
 0xff000000,extended protocol id mask,,,,
-0x6d6f6e6579627574746f6e2e636f6d,Money Button,Ryan X. Charles
+0x6d6f6e6579627574746f6e2e636f6d,Money Button,Ryan X. Charles,,https://www.moneybutton.com
