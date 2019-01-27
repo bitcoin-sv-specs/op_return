@@ -4,6 +4,10 @@ Prefix,DisplayName,Authors,BitcoinAddress,SpecificationUrl,TxidRedirectUrl
 0x00584350,Counterparty Cash,Counterparty Cash Association (CCA),17YhxKgKunLjvi7HB1ENGmeLwPFiaxb74V,https://counterparty.cash,
 0x00746C6B,Keyport,Keyport,,https://keyport.io,
 0x02446365,SatoshiDICE,Jon Bestman,1DiceuELb5GZktc3CMEv868DMtU3B5957x,https://satoshidice.com,
+0x64617461,data,Steve Shadders,,,
+0x66696c65,file,Ryan X Charles,,,
+0x677a6970,gzip,Steve Shadders,,,
+0x6d657461,meta,Steve Shadders,,,
+0x6d6f6e6579627574746f6e2e636f6d,Money Button,Ryan X. Charles,,https://www.moneybutton.com,
 0xac1eed88,Miner ID,Steve Shadders,,,
 0xff000000,extended protocol id mask,,,,
-0x6d6f6e6579627574746f6e2e636f6d,Money Button,Ryan X. Charles,,https://www.moneybutton.com
