@@ -34,4 +34,4 @@ FAQ
 
 **How do I store meta data?** Meta data is not included in this spec.
 
-**What if I want to do a bunch of other things not specificed here?** Creat a new file format.
+**What if I want to do a bunch of other things not specificed here?** Create a new OP_RETURN protocol.
