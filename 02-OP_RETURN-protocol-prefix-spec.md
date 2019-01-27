@@ -11,7 +11,7 @@ The Bitcoin ecosystem has gained renewed interest for overlay protocols built on
 
 An agreed unifying scheme will help to avoid collisions between protocols. While none of those collisions endanger Bitcoin itself, they will significantly and needlessly complicate the design of the software intended to operate those overlay protocols.
 
-At this early stage there at least four known protocol identifier schemes in use. However, they share a common property.  The protocol identifier is a [PUSHDATA data element](./01-PUSHDATA-data-element-framing.md) that appears immediately after the `OP_RETURN` op code. There is no length requirement so as to encapsulate several more specific protocol identifer standards currently in use under this specification.
+At this early stage there are at least four known protocol identifier schemes in use. However, they share a common property.  The protocol identifier is a [PUSHDATA data element](./01-PUSHDATA-data-element-framing.md) that appears immediately after the `OP_RETURN` op code. There is no length requirement so as to encapsulate several more specific protocol identifer standards currently in use under this specification.
 
 ## Specification
 
