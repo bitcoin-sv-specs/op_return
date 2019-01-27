@@ -12,7 +12,7 @@ In detail these are:
 * [filename]: Any byte string. However, it is recommended that the filaname be a utf8 character string. Furthermore, it is recommended that it be divided into name and extension like normal files: [name].[extension] . Operating systems are already used to dealing with filenames and parsing meaning from them, so we can reuse code from operating systems for this.
 * [filedata]: Any length of data in any format. However, it is recommended that producers format the file correctly according to the extension. For instance, if your filename is mydocument.pdf then the filedata should be a properly valid PDF file.
 
-This structure for files on the blockchain is extremely simple and allows us to reuse the same code for understanding files that already existing in operating systems. Block explorers can start displaying all ordinary filetypes right away. Files that are not valid won't be understood by generic block explorers, but may be understood by proprietary applications.
+This structure for files on the blockchain is extremely simple and allows us to reuse the same code for understanding files that already exist in operating systems. Block explorers can start displaying all ordinary filetypes right away. Files that are not valid won't be understood by generic block explorers, but may be understood by proprietary applications.
 
 An example of a file is as follows:
 
