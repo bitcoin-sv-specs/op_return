@@ -1,3 +1,6 @@
+.bitcoin files
+==============
+
 The idea of the file protocol is to have a standard way to put files on the blockchain in OP_RETURN data.
 
 A high level outline of a file is as follows:
@@ -21,3 +24,10 @@ OP_RETURN 4 0x66696c65 18 0x68656c6c6f2e747874 6 0x68656c6c6f0a
 ```
 
 This is the file hello.txt consisting of the word "hello" followed by a newline.
+
+FAQ
+===
+
+**What if the tx has more than one OP_RETURN?** Use the first one.
+
+**What if I want to do a bunch of other things not specificed here?** Creat a new file format.
