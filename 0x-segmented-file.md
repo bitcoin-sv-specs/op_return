@@ -32,4 +32,4 @@ These are the ways segments are processed:
 
 ## On disk representation
 
-The complete OP_RETURN contents (excluding the leading OP_RETURN opcode) is stored in an on-disk file, perhaps as '<filename>.bitcoin'.  It can be identified and processed using the same processing that identifies and processes the contents of an OP_RETURN.
+The complete OP_RETURN contents (excluding the leading OP_RETURN opcode) is stored in an on-disk file, perhaps as '[filename].bitcoin'.  It can be identified and processed using the same processing that identifies and processes the contents of an OP_RETURN.
