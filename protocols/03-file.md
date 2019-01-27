@@ -1,5 +1,5 @@
-.bitcoin files
-==============
+file protocol
+=============
 
 The idea of the file protocol is to have a standard way to put files on the blockchain in OP_RETURN data.
 
