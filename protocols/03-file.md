@@ -25,9 +25,13 @@ OP_RETURN 4 0x66696c65 18 0x68656c6c6f2e747874 6 0x68656c6c6f0a
 
 This is the file hello.txt consisting of the word "hello" followed by a newline.
 
+Another example is a ".bitcoin" file format that contains a list of txids. Large files can be reconstructed by looking at the files inside and putting them back together in order. A .bitcoin file can contain other .bitcoin files if necessary to store huge amounts of data.
+
 FAQ
 ===
 
-**What if the tx has more than one OP_RETURN?** Use the first one.
+**What if the tx has more than one OP_RETURN?** Each OP_RETURN can be a different file.
+
+**How do I store meta data?** Meta data is not included in this spec.
 
 **What if I want to do a bunch of other things not specificed here?** Creat a new file format.
