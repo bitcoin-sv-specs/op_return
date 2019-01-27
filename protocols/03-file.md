@@ -17,7 +17,7 @@ This structure for files on the blockchain is extremely simple and allows us to 
 An example of a file is as follows:
 
 ```
-OP_RETURN 4 0x66696c65 18 68656c6c6f2e747874 6 68656c6c6f0a
+OP_RETURN 4 0x66696c65 18 0x68656c6c6f2e747874 6 0x68656c6c6f0a
 ```
 
 This is the file hello.txt consisting of the word "hello" followed by a newline.
