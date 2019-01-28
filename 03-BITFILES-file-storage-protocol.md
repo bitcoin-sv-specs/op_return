@@ -15,14 +15,13 @@ If it survives and is encouraged by that process it aspires to lead at least to 
 - Associate bitcoin address as an identifier for each file and to verify file ownership for updates.
 - Handle files larger than current transaction limit.
 - Handle multiple small files and related files in a single transaction.
-- Support for content encodings.
+- Support for media type and content encodings.
 - Support for content encryption and compression methods.
 - Support for content replacement and incremental file updates (diffs).
-- Support file metadata.
-- Use PUSHDATA framing to facilitate block explorer access to key fields.
-- Use Bitcom to register and manage protocol identifier.
+- Use PUSHDATA parameter framing including null parameters.
+- Use Bitcom to register and manage protocol identifiers.
 - Resist attacks: Easily verify ownership and any attempted content updates.
-- Minimal overhead and complexity.
+- Minimal overhead and complexity ;-)
 
 ## Description:
 
@@ -38,13 +37,16 @@ The Bitcom meta protocol is specified here https://bitcom.bitdb.network.
 
 The use of PUSHDATA for OP_RETURN data framing is specified here https://github.com/bitcoin-sv-specs/op_return/blob/master/01-PUSHDATA-data-element-framing.md.
 
+## Metadata:
+
+Metadata associated with a particular file can be stored and updated using a separate file meta data protocol...
+
 ## Specification:
 	<first_chunk_protocol_identifier>
 	[...this sequence can repeat...
 		<file_identifier>
        <signature>
-		<content_length>
-		<metadata>
+		<media_type_info>
 		<encoding_info>
 		<encryption_info>
 		<diff_info>
@@ -78,66 +80,63 @@ Future protocol extensions may allow for excess miners fees paid from this addre
 ### <signature>
 This signature verifies that the transaction creator is in possession of the private key associated with the bitcoin address used as this file's identifier.
 
-The process for creating the signature and verifying it is TBD.
+The process for creating the signature and verifying it is...
 
-###  <content_hash>
-Still on the fence about the utility of a content hash.
-
-###  <content_length>
-Byte length of entire file across all chunks.
-
-###  <metadata>
-Varint followed by UTF8, JSON formatted metadata.
-
-Metadata properties and value formats will be specified here ...
-
-At least one diff mode will allow updating only metadata.
+###  <media_type_info>
+Media type of content as listed at https://www.iana.org/assignments/media-types/media-types.xhtml.
 
 ###  <encoding_info>
-Varint byte length followed by data describing the encoding standard. Determines how raw (or decrypted) bytes are encoded.
-
-A value of zero indicates no encoding specified.
+Encoding of content (post decryption, decompression if any) as listed at https://www.iana.org/assignments/character-sets/character-sets.xhtml.
 
 ###  <encryption_info>
-varing byte length followed by data describing the encryption method. Determines how to decrypt encrypted content bytes to obtain raw content bytes.
+Determines what decryption or decompression algorithms to apply to content bytes.
 
-A value of zero indicates no encryption.
+Initial options may include:
+- gzip
+- pk
+ 
+Multiple options can be combined with pipe separators.
+
+A value of "pk" indicates the content has been encrypted using the file_identifier's private key.
+
+A value of "gzip" indicates the content was compressed using the gzip algorithm.
+
+A value of zero, OP_0, indicates no encryption or compression.
 
 ###  <diff_info>
-Varint byte length followed by a transaction ID and data describing the incremental difference algorithm to be used to apply these content bytes
+Transaction ID followed by a parameter describing the incremental difference algorithm to be used to apply these content bytes
 to previous file version’s content bytes. The transaction ID determines the previous file version.
 
-At least one diff mode will allow updating only metadata without having to respecify content, encryption, or encoding.
+A value of zero, OP_0, for the transaction ID indicates the start of a new file revision history.
 
-A value of zero indicates this is not an incremental file update. The content bytes completely replace any previous content bytes sharing the same file_identifier (bitcoin address).
-Note that it may be useful to include a transaction ID even when completely replacing previous content to establish the files version history.
+A value of zero, OP_0, for the difference algorithm indicates this is not an incremental file update.
+The content bytes completely replace any previous content bytes sharing the same file_identifier (bitcoin address).
 
 ###  <first_chunk_info>
-Varint specifying the maximum chunk index. When greater than zero, additional chunks with indices from one to this value are expected and the file’s contents
+Maximum chunk index. When greater than zero, additional chunks with indices from one to this value are expected and the file’s contents
 is reconstructed by arranging the chunks in order and applying the decryption, encoding, and diff data included with chunk zero.
-When greater than zero it is followed by a varint specifying the number of content bytes in this chunk.
 
-A value of zero indicates a single chunk file in which case the content_length has already specified the number of content_bytes.
+A value of zero, OP_0, indicates a single chunk file.
 
 ###  <continuation_chunk_info>
-Varint specifying this chunk’s non-zero index followed by a varint specifying the number of content bytes.
+This chunk’s non-zero index, from 1 to the maximum specified with first chunk.
 
 Zero is not a valid value.
 
 ###  <content_bytes>
-Varint byte length followed by that many content bytes.
+Content bytes in this chunk. For single chunk files, the PUSHDATA specifies the total file contents length.
 
 ## Examples
 
-### Simplest Case: A One-Chunk Unencrypted Binary File
+### Simplest Case: A One-Chunk Unencrypted Binary Image File
 
-	<first_chunk_pid>, <pub_key>, <content_length>, 0, 0, 0, 0, 0, <content_bytes>
+	<first_chunk_pid> <pub_key> <sig> image/png binary OP_0 OP_0 OP_0 OP_0 <content_bytes>
 
-### A Large, Three Chunk Unencrypted Binary File
+### A Large, Three Chunk Unencrypted Binary Image File
 
 	Transaction 1:
-	<first_chunk_pid>, <pub_key>, <sig>, <content_length>, 0, 0, 0, 0, 2, <length0>, <content_bytes0>
+	<first_chunk_pid> <pub_key> <sig> image/png binary OP_0 OP_0 OP_0 2 <content_bytes0>
 	Transaction 2:
-	<continuation_chunk_pid>, <pub_key>, <sig>, 1, <length1>, <content_bytes1>
+	<continuation_chunk_pid> <pub_key> <sig> 1 <content_bytes1>
 	Transaction 3:
-	<continuation_chunk_pid>, <pub_key>, <sig>, 2, <length2>, <content_bytes2>
+	<continuation_chunk_pid> <pub_key> <sig> 2 <content_bytes2>
