@@ -4,7 +4,7 @@ This document describes a data framing scheme for `OP_RETURN` data.
 
 ## Introduction
 
-It is commonly assumed that `PUSHDATA` operations are required to add data following an `OP_RETURN` op code.  This is not a requirement as no script execution happens after `OP_RETURN`.  It is valid in bitcoin for any sequence to bytes to follow the `OP_RETURN` op code.  However many existing bitcoin libraries attempt to parse scripts even when it is not necessary and will throw exceptions when encountering invalid scripts. `PUSHDATA` provides length framing of data elements and given it's use keeps the script in a parseable form for existing bitcoin libraries it fullfills the requirements of a data framing standard with minimal drawbacks.
+It is commonly assumed that `PUSHDATA` operations are required to add data following an `OP_RETURN` op code.  This is not a requirement as no script execution happens after `OP_RETURN`.  It is valid in bitcoin for any sequence of bytes to follow the `OP_RETURN` op code.  However many existing bitcoin libraries attempt to parse scripts even when it is not necessary and will throw exceptions when encountering invalid scripts. `PUSHDATA` provides length framing of data elements and given it's use keeps the script in a parseable form for existing bitcoin libraries. It fullfills the requirements of a data framing standard with minimal drawbacks.
 
 Considering uses cases where data is extracted from UTXOs then handed off to a consumer that may not be bitcoin aware, the semantics of `OP_PUSHDATA` operations are quite simple to implement.  Given a byte array `bytes` with the data element beginning at `offset` the following pseudo code will determine the length of the data that follows
 
