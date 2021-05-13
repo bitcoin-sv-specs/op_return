@@ -11,11 +11,11 @@ The Bitcoin ecosystem has gained renewed interest for overlay protocols built on
 
 An agreed unifying scheme will help to avoid collisions between protocols. While none of those collisions endanger Bitcoin itself, they will significantly and needlessly complicate the design of the software intended to operate those overlay protocols.
 
-At this early stage there are at least four known protocol identifier schemes in use. However, they share a common property.  The protocol identifier is a [PUSHDATA data element](./01-PUSHDATA-data-element-framing.md) that appears immediately after the `OP_RETURN` op code. There is no length requirement so as to encapsulate several more specific protocol identifer standards currently in use under this specification.
+At this early stage there are at least four known protocol identifier schemes in use. However, they share a common property.  The protocol identifier is a [PUSHDATA data element](./01-PUSHDATA-data-element-framing.md) that appears immediately after the `OP_RETURN` op code. There is no length requirement so as to encapsulate several more specific protocol identifier standards currently in use under this specification.
 
 ## Specification
 
-An abritrary length data element containing the protocol identifier should be the first element of data following the `OP_RETURN` op code. The data element should be length prefixed as described in the [PUSHDATA framing specfication](01-PUSHDATA-data-element-framing.md).
+An arbitrary length data element containing the protocol identifier should be the first element of data following the `OP_RETURN` op code. The data element should be length prefixed as described in the [PUSHDATA framing specification](01-PUSHDATA-data-element-framing.md).
 
 The `null` data element, that is, the byte `0x00` is reserved as a marker for protocols that do not wish to specify a protocol identifier.
 

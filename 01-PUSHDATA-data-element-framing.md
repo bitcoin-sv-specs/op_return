@@ -4,7 +4,7 @@ This document describes a data framing scheme for `OP_RETURN` data.
 
 ## Introduction
 
-It is commonly assumed that `PUSHDATA` operations are required to add data following an `OP_RETURN` op code.  This is not a requirement as no script execution happens after `OP_RETURN`.  It is valid in bitcoin for any sequence of bytes to follow the `OP_RETURN` op code.  However many existing bitcoin libraries attempt to parse scripts even when it is not necessary and will throw exceptions when encountering invalid scripts. `PUSHDATA` provides length framing of data elements and given it's use keeps the script in a parseable form for existing bitcoin libraries. It fullfills the requirements of a data framing standard with minimal drawbacks.
+It is commonly assumed that `PUSHDATA` operations are required to add data following an `OP_RETURN` op code.  This is not a requirement as no script execution happens after `OP_RETURN`.  It is valid in bitcoin for any sequence of bytes to follow the `OP_RETURN` op code.  However many existing bitcoin libraries attempt to parse scripts even when it is not necessary and will throw exceptions when encountering invalid scripts. `PUSHDATA` provides length framing of data elements and given it's use keeps the script in a parseable form for existing bitcoin libraries. It fulfills the requirements of a data framing standard with minimal drawbacks.
 
 Considering uses cases where data is extracted from UTXOs then handed off to a consumer that may not be bitcoin aware, the semantics of `OP_PUSHDATA` operations are quite simple to implement.  Given a byte array `bytes` with the data element beginning at `offset` the following pseudo code will determine the length of the data that follows
 
@@ -41,7 +41,7 @@ This spec proposes the use of a simple data framing mechanism.  A data element i
 
 `76-0xff`: the byte `0x4c` which is `OP_PUSHDATA1`, followed by the length as a single byte integer, followed by the actual data is appended to the script.
 
-`0x0100-0xffff`: the byte `0x4d` which is `OP_PUSHDATA2`, followed by the lenth as a 2 byte integer in reverse byte order (little endian), followed by the actual data is appended to the script.
+`0x0100-0xffff`: the byte `0x4d` which is `OP_PUSHDATA2`, followed by the length as a 2 byte integer in reverse byte order (little endian), followed by the actual data is appended to the script.
 
 `0x010000-0xffffffff`: the byte `0x4e` which is `OP_PUSHDATA4`, followed by as a 4 byte integer in reverse byte order (little endian), followed by the actual data is appended to the script.
 
