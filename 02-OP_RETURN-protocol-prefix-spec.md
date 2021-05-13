@@ -68,6 +68,8 @@ Each line should not be longer than 1KB (1024 bytes) in total.
 
 The lines should be sorted in increasing order against their prefix.
 
+The field `Prefix` must contain the hexadecimally encoded binary prefix, not including the length of the prefix.
+
 The field `BitcoinAddress` is intended to help resolve any conflicting claims in the event where such claims were to arise.
 
 The field `TxidRedirectUrl` is intended to help blockchain explorers making protocols more discoverable. For any transaction associated to the protocol - as identified through its prefix - a redirecting link can be inserted. The field `TxidRedirectUrl` should contain the substring `{txid}` to be replaced by the transaction identifier encoded in hexadecimal (64 characters). The landing page of the redirect is expected to be a human-readable version of the transaction aligned with the semantic of the protocol.
