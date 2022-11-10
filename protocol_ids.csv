@@ -7,5 +7,7 @@ Prefix,DisplayName,Authors,BitcoinAddress,SpecificationUrl,TxidRedirectUrl
 0x64757374,dust,nChain,,,
 0x64736e74,dsnt,nChain,,https://github.com/bitcoin-sv-specs/protocol/blob/master/updates/double-spend-notifications.md,
 0xac1eed88,Miner ID,Steve Shadders,,,
+0x601dface,Miner ID V1.0,nChain,,https://github.com/bitcoin-sv-specs/protocol/blob/master/p2p/miner_id.md
+0x63667478,Confiscation Transactions,nChain,,https://github.com/bitcoin-sv-specs/protocol/blob/master/updates/confiscation-transactions.md,
 0xff000000,extended protocol id mask,,,,
 0x6d6f6e6579627574746f6e2e636f6d,Money Button,Ryan X. Charles,,https://www.moneybutton.com
